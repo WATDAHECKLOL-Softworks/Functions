@@ -1,3 +1,4 @@
+--!nolint BuiltinGlobalWrite
 --!strict
 type func = (...any) -> (...any);
 local hookmetamethod: (object: any, method: string, hook: func) -> func  = hookmetamethod;
@@ -24,7 +25,7 @@ local setreadonly: ({[any]: any}, boolean) -> () = setreadonly;
 local identifyexecutor: () -> string = identifyexecutor;
 local setclipboard: (string) -> () = setclipboard;
 local getreg: () -> {[any]: any} = getreg;
-local getgc: () -> {[any]: any} = getgc;
+local getgc: (operand: boolean) -> {[any]: any} = getgc;
 local cloneref: (any) -> any= cloneref;
 local clonereference = cloneref;
 local compareinstances: (Instance, Instance) -> boolean = compareinstances;
