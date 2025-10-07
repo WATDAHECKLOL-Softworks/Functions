@@ -1,5 +1,4 @@
---!nolint UnknownGlobal
---!nolint BuiltinGlobalWrite
+--!strict
 type func = (...any) -> (...any);
 local hookmetamethod: (object: any, method: string, hook: func) -> func  = hookmetamethod;
 local getnamecallmethod: () -> string = getnamecallmethod;
@@ -25,8 +24,9 @@ local setreadonly: ({[any]: any}, boolean) -> () = setreadonly;
 local identifyexecutor: () -> string = identifyexecutor;
 local setclipboard: (string) -> () = setclipboard;
 local getreg: () -> {[any]: any} = getreg;
-local getgc: (operand: boolean) -> {[any]: any} = getgc;
+local getgc: () -> {[any]: any} = getgc;
 local cloneref: (any) -> any= cloneref;
+local clonereference = cloneref;
 local compareinstances: (Instance, Instance) -> boolean = compareinstances;
 local getobjects: (string) -> {[number]: Model} = getobjects;
 local getgenv: () -> {[string]: any} = getgenv;
@@ -88,6 +88,13 @@ local decomplie: (target: func | LuaSourceContainer, options: decomplie_options?
 local getscriptname: (script: LuaSourceContainer) -> string = getscriptname;
 local getsignalarguments: (signal: RBXScriptSignal) -> {[string]: any} = getsignalarguments;
 local isluaconnection: (connection: RBXScriptConnection) -> boolean = isluaconnection;
+local getcallbackvalue: (Instance, string) -> (...any) -> (...any) = getcallbackvalue;
+local getscripts: () -> {[number]: BaseScript} = getscripts;
+local getallthreads: () -> {[number]: thread} = getallthreads;
+local getthreadstack: (thread: thread, index: number) -> any  = getthreadstack;
+local setthreadstack: (thread: thread, index: number, value: any) -> () = setthreadstack;
+local getunionassetid: (union: UnionOperation) -> string = getunionassetid;
+local getreplicablesignals: () -> {[number]: string} = getreplicablesignals;
 local syn = {} :: syn;
 export type decomplie_options = {
 	VarboseFunctions: boolean?;
@@ -221,5 +228,5 @@ export type crypt = {
 	generatekey: (length: number?) -> string;
 	rsa: RSA;	
 };
-debug = debug :: typeof(debug) & debug_lib
+debug = debug :: debug_lib & typeof(debug)
 local crypt = {} :: crypt;
